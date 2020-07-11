@@ -14,19 +14,20 @@ namespace TabletBatteryUsage.Data
     public class TabletDataFromJsonFile : ITabletsData
     {
         readonly List<TabletDetails> tabletDetails;
+        readonly string filePath;
         public TabletDataFromJsonFile()
         {
-            this.tabletDetails = ParseJsonDataForTabletsBatteryDetails();
+            this.filePath = "C:\\Users\\harsh\\Desktop\\BridgeInternational\\TabletBatteryUsage.API\\TabletBatteryUsage.Data\\Resources\\battery.json";
+            this.tabletDetails = ParseJsonDataForTabletsBatteryDetails(filePath);
         }
 
-        private List<TabletDetails> ParseJsonDataForTabletsBatteryDetails()
+        public List<TabletDetails> ParseJsonDataForTabletsBatteryDetails(string filePath)
         {
             List<TabletDetails> data = new List<TabletDetails>();
 
             try
             {
-                string jsonFilePath = "C:\\Users\\harsh\\Desktop\\BridgeInternational\\TabletBatteryUsage.API\\TabletBatteryUsage.Data\\Resources\\battery.json";
-                using (StreamReader r = new StreamReader(jsonFilePath))
+                using (StreamReader r = new StreamReader(filePath))
                 {
                     string json = r.ReadToEnd();
                     data = JsonConvert.DeserializeObject<List<TabletDetails>>(json);
@@ -73,10 +74,10 @@ namespace TabletBatteryUsage.Data
 
         public IEnumerable<TabletBatteryData> CalculateTabletBatteryUsage(List<TabletDetails> devicesList)
         {
-            var temp = devicesList.GroupBy(t => t.SerialNumber)
+            var devicesGroupedBySerialNumber = devicesList.GroupBy(t => t.SerialNumber)
                         .ToDictionary(group => group.Key,group => group.ToList());
             List<TabletBatteryData> tabletBatteryPercentageData = new List<TabletBatteryData>();
-            foreach(var data in temp)
+            foreach(var data in devicesGroupedBySerialNumber)
             {
                 var devicedata = data.Value.OrderBy(key => key.TimeStamp).ToList();
                 var dropinpercentage = 0.0;
@@ -94,7 +95,7 @@ namespace TabletBatteryUsage.Data
                         i++;
                     }
 
-                    var dailypercentage = (86400 * (dropinpercentage * 100)) / duration;
+                    var dailypercentage = Math.Round((86400 * (dropinpercentage * 100)) / duration , 2);
                     TabletBatteryData tabletBatteryData = new TabletBatteryData { BatteryPercentage = dailypercentage, SerialNumber = data.Key, BatteryReplacementNeeded = dailypercentage > 30 ? BatteryReplacementRecommendation.ReplaceBattery.ToString() : BatteryReplacementRecommendation.BatteryIsGood.ToString() };
                     tabletBatteryPercentageData.Add(tabletBatteryData);
                 }

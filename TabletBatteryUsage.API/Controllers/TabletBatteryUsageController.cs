@@ -17,6 +17,7 @@ namespace TabletBatteryUsage.API.Controllers
         private readonly ILogger<TabletBatteryUsageController> logger;
         private readonly ITabletsData tabletsData;
 
+
         public TabletBatteryUsageController(ILogger<TabletBatteryUsageController> logger, ITabletsData tabletsData)
         {
             this.logger = logger;
@@ -36,9 +37,14 @@ namespace TabletBatteryUsage.API.Controllers
             }
             catch(Exception ex)
             {
+                
                 logger.LogCritical("There was an error on '{0}' invocation: {1}", nameof(GetAllTabletsData), ex);
+                return BadRequest();
             }
-
+            if(response.Count() == 0)
+            {
+                return NotFound();
+            }
             return Ok(response);
         }
 
@@ -56,8 +62,13 @@ namespace TabletBatteryUsage.API.Controllers
             catch (Exception ex)
             {
                 logger.LogCritical("There was an error on '{0}' invocation: {1}", nameof(GetAllTabletsData), ex);
+                return BadRequest();
             }
 
+            if (response.Count() == 0)
+            {
+                return NotFound();
+            }
             return Ok(response);
         }
 
@@ -75,8 +86,12 @@ namespace TabletBatteryUsage.API.Controllers
             catch (Exception ex)
             {
                 logger.LogCritical("There was an error on '{0}' invocation: {1}", nameof(GetAllTabletsData), ex);
+                return BadRequest();
             }
-
+            if(response.Count() == 0)
+            {
+                return NotFound();
+            }
             return Ok(response);
         }
 
@@ -94,8 +109,12 @@ namespace TabletBatteryUsage.API.Controllers
             catch (Exception ex)
             {
                 logger.LogCritical("There was an error on '{0}' invocation: {1}", nameof(GetAllTabletsData), ex);
+                return BadRequest();
             }
-
+            if (response.Count() == 0)
+            {
+                return NotFound();
+            }
             return Ok(response);
         }
     }
