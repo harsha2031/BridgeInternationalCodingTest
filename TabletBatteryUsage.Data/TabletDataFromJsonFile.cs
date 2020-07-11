@@ -64,5 +64,10 @@ namespace TabletBatteryUsage.Data
         {
             return tabletDetails.Where(detail => detail.EmployeeId == employeeId);
         }
+
+        public IEnumerable<TabletBatteryData> CalculateTabletBatteryUsage()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
