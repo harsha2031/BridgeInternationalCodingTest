@@ -10,7 +10,7 @@ using TabletBatteryUsage.Data;
 
 namespace TabletBatteryUsage.API.Controllers
 {
-    //[Route("api/[controller]")]
+    
     [ApiController]
     public class TabletBatteryUsageController : ControllerBase
     {

@@ -11,6 +11,6 @@ namespace TabletBatteryUsage.Data
         IEnumerable<TabletDetails> GetTabletDetailsByDeviceId(string serialNumber);
         IEnumerable<TabletDetails> GetTabletDetailsByAcademyId(int academyId);
         IEnumerable<TabletDetails> GetTabletDetailsByEmployeeId(string employeeId);
-        IEnumerable<TabletBatteryData> CalculateTabletBatteryUsage();
+        IEnumerable<TabletBatteryData> CalculateTabletBatteryUsage(List<TabletDetails> tabletDetails);
     }
 }

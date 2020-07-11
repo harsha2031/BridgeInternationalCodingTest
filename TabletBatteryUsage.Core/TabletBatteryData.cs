@@ -7,7 +7,7 @@ namespace TabletBatteryUsage.Core
     public class TabletBatteryData
     {
         public string SerialNumber { get; set; }
-        public float BatteryPercentage { get; set; }
+        public double BatteryPercentage { get; set; }
         public bool BatteryReplacementNeeded { get; set; }
     }
 }
