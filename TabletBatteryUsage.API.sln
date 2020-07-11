@@ -9,6 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabletBatteryUsage.Core", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabletBatteryUsage.Data", "TabletBatteryUsage.Data\TabletBatteryUsage.Data.csproj", "{F0F01CD1-6D2D-42DD-A373-5A0F470CC6B9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BDF962E-1D1D-44FF-B5A0-F3FD62DE139C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\BridgeInternationalTest-master\BridgeInternationalTest-master\README.md = ..\..\..\Downloads\BridgeInternationalTest-master\BridgeInternationalTest-master\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
