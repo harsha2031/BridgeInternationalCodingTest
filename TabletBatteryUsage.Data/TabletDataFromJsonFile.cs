@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -94,8 +95,12 @@ namespace TabletBatteryUsage.Data
                     }
 
                     var dailypercentage = (86400 * (dropinpercentage * 100)) / duration;
-                    TabletBatteryData tabletBatteryData = new TabletBatteryData { BatteryPercentage = dailypercentage, SerialNumber = data.Key, BatteryReplacementNeeded = dailypercentage > 30 ? true : false };
+                    TabletBatteryData tabletBatteryData = new TabletBatteryData { BatteryPercentage = dailypercentage, SerialNumber = data.Key, BatteryReplacementNeeded = dailypercentage > 30 ? BatteryReplacementRecommendation.ReplaceBattery.ToString() : BatteryReplacementRecommendation.BatteryIsGood.ToString() };
                     tabletBatteryPercentageData.Add(tabletBatteryData);
+                }
+                else
+                {
+                    tabletBatteryPercentageData.Add(new TabletBatteryData { BatteryPercentage = 0.0, SerialNumber = data.Key, BatteryReplacementNeeded = BatteryReplacementRecommendation.Unknown.ToString() });
                 }
             }
 
