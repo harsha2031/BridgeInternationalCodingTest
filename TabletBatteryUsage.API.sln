@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabletBatteryUsage.API", "TabletBatteryUsage.API\TabletBatteryUsage.API.csproj", "{3864CA55-A43F-424D-880D-CD11646DB9F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabletBatteryUsage.Core", "TabletBatteryUsage.Core\TabletBatteryUsage.Core.csproj", "{67C5BC32-3369-4736-B85C-DEB0F4909449}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabletBatteryUsage.Data", "TabletBatteryUsage.Data\TabletBatteryUsage.Data.csproj", "{F0F01CD1-6D2D-42DD-A373-5A0F470CC6B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3864CA55-A43F-424D-880D-CD11646DB9F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3864CA55-A43F-424D-880D-CD11646DB9F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3864CA55-A43F-424D-880D-CD11646DB9F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3864CA55-A43F-424D-880D-CD11646DB9F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67C5BC32-3369-4736-B85C-DEB0F4909449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C5BC32-3369-4736-B85C-DEB0F4909449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67C5BC32-3369-4736-B85C-DEB0F4909449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C5BC32-3369-4736-B85C-DEB0F4909449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0F01CD1-6D2D-42DD-A373-5A0F470CC6B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0F01CD1-6D2D-42DD-A373-5A0F470CC6B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0F01CD1-6D2D-42DD-A373-5A0F470CC6B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0F01CD1-6D2D-42DD-A373-5A0F470CC6B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E9B4B95-442F-401C-9794-F9991C8B9FE4}
+	EndGlobalSection
+EndGlobal
