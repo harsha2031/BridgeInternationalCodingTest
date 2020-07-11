@@ -7,10 +7,10 @@ namespace TabletBatteryUsage.Data
 {
     public interface ITabletsData
     {
-        IEnumerable<TabletDetails> GetAllTabletsDetails();
-        IEnumerable<TabletDetails> GetTabletDetailsByDeviceId(string serialNumber);
-        IEnumerable<TabletDetails> GetTabletDetailsByAcademyId(int academyId);
-        IEnumerable<TabletDetails> GetTabletDetailsByEmployeeId(string employeeId);
+        IEnumerable<TabletBatteryData> GetAllTabletsDetails();
+        IEnumerable<TabletBatteryData> GetTabletDetailsByDeviceId(string serialNumber);
+        IEnumerable<TabletBatteryData> GetTabletDetailsByAcademyId(int academyId);
+        IEnumerable<TabletBatteryData> GetTabletDetailsByEmployeeId(string employeeId);
         IEnumerable<TabletBatteryData> CalculateTabletBatteryUsage(List<TabletDetails> tabletDetails);
     }
 }

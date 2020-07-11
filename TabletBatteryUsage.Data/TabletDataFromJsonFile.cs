@@ -47,24 +47,27 @@ namespace TabletBatteryUsage.Data
             return data;
         }
 
-        public IEnumerable<TabletDetails> GetAllTabletsDetails()
+        public IEnumerable<TabletBatteryData> GetAllTabletsDetails()
         {
-            return tabletDetails;
+            return CalculateTabletBatteryUsage(tabletDetails);
         }
 
-        public IEnumerable<TabletDetails> GetTabletDetailsByAcademyId(int academyId)
+        public IEnumerable<TabletBatteryData> GetTabletDetailsByAcademyId(int academyId)
         {
-            return tabletDetails.Where(detail => detail.AcadamyId == academyId);
+            List<TabletDetails> tabDetails = tabletDetails.Where(detail => detail.AcadamyId == academyId).ToList();
+            return CalculateTabletBatteryUsage(tabDetails);
         }
 
-        public IEnumerable<TabletDetails> GetTabletDetailsByDeviceId(string serialNumber)
+        public IEnumerable<TabletBatteryData> GetTabletDetailsByDeviceId(string serialNumber)
         {
-            return tabletDetails.Where(detail => detail.SerialNumber == serialNumber);
+            List<TabletDetails> tabDetails = tabletDetails.Where(detail => detail.SerialNumber == serialNumber).ToList();
+            return CalculateTabletBatteryUsage(tabDetails);
         }
 
-        public IEnumerable<TabletDetails> GetTabletDetailsByEmployeeId(string employeeId)
+        public IEnumerable<TabletBatteryData> GetTabletDetailsByEmployeeId(string employeeId)
         {
-            return tabletDetails.Where(detail => detail.EmployeeId == employeeId);
+            List<TabletDetails> tabDetails = tabletDetails.Where(detail => detail.EmployeeId == employeeId).ToList();
+            return CalculateTabletBatteryUsage(tabDetails);
         }
 
         public IEnumerable<TabletBatteryData> CalculateTabletBatteryUsage(List<TabletDetails> devicesList)
@@ -78,18 +81,22 @@ namespace TabletBatteryUsage.Data
                 var dropinpercentage = 0.0;
                 double duration = 0.0;
                 int i = 0;
-                while(i < devicedata.Count() -1)
+                if (devicedata.Count > 1)
                 {
-                    if(devicedata[i].BatteryLevel > devicedata[i + 1].BatteryLevel)
+                    while (i < devicedata.Count() - 1)
                     {
-                        dropinpercentage += devicedata[i].BatteryLevel - devicedata[i + 1].BatteryLevel;
-                        duration += (devicedata[i + 1].TimeStamp - devicedata[i].TimeStamp).TotalSeconds;
+                        if (devicedata[i].BatteryLevel > devicedata[i + 1].BatteryLevel)
+                        {
+                            dropinpercentage += devicedata[i].BatteryLevel - devicedata[i + 1].BatteryLevel;
+                            duration += (devicedata[i + 1].TimeStamp - devicedata[i].TimeStamp).TotalSeconds;
+                        }
+                        i++;
                     }
-                    i++;
+
+                    var dailypercentage = (86400 * (dropinpercentage * 100)) / duration;
+                    TabletBatteryData tabletBatteryData = new TabletBatteryData { BatteryPercentage = dailypercentage, SerialNumber = data.Key, BatteryReplacementNeeded = dailypercentage > 30 ? true : false };
+                    tabletBatteryPercentageData.Add(tabletBatteryData);
                 }
-                var dailypercentage = (86400 * (dropinpercentage * 100)) / duration;
-                TabletBatteryData tabletBatteryData = new TabletBatteryData { BatteryPercentage = dailypercentage, SerialNumber = data.Key, BatteryReplacementNeeded = dailypercentage > 30 ? true : false };
-                tabletBatteryPercentageData.Add(tabletBatteryData);
             }
 
             return tabletBatteryPercentageData;

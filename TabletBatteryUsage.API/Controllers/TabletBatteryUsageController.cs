@@ -28,7 +28,7 @@ namespace TabletBatteryUsage.API.Controllers
         public IActionResult GetAllTabletsData()
         {
             logger?.LogDebug("'{0}' has been invoked", nameof(GetAllTabletsData));
-            IEnumerable<TabletDetails> response = new List<TabletDetails>();
+            IEnumerable<TabletBatteryData> response = new List<TabletBatteryData>();
             try
             {
                 response = tabletsData.GetAllTabletsDetails();
@@ -47,7 +47,7 @@ namespace TabletBatteryUsage.API.Controllers
         public IActionResult GetAllTabletsDataByDevice(string serialnumber)
         {
             logger?.LogDebug("'{0}' has been invoked", nameof(GetAllTabletsData));
-            IEnumerable<TabletDetails> response = new List<TabletDetails>();
+            IEnumerable<TabletBatteryData> response = new List<TabletBatteryData>();
             try
             {
                 response = tabletsData.GetTabletDetailsByDeviceId(serialnumber);
@@ -66,7 +66,7 @@ namespace TabletBatteryUsage.API.Controllers
         public IActionResult GetAllTabletsDataByEmployee(string employeeid)
         {
             logger?.LogDebug("'{0}' has been invoked", nameof(GetAllTabletsData));
-            IEnumerable<TabletDetails> response = new List<TabletDetails>();
+            IEnumerable<TabletBatteryData> response = new List<TabletBatteryData>();
             try
             {
                 response = tabletsData.GetTabletDetailsByEmployeeId(employeeid);
@@ -85,7 +85,7 @@ namespace TabletBatteryUsage.API.Controllers
         public IActionResult GetAllTabletsDataByAcademy(int academyid)
         {
             logger?.LogDebug("'{0}' has been invoked", nameof(GetAllTabletsData));
-            IEnumerable<TabletDetails> response = new List<TabletDetails>();
+            IEnumerable<TabletBatteryData> response = new List<TabletBatteryData>();
             try
             {
                 response = tabletsData.GetTabletDetailsByAcademyId(academyid);
