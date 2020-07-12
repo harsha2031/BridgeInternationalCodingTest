@@ -11,16 +11,22 @@ using TabletBatteryUsage.Core;
 
 namespace TabletBatteryUsage.Data
 {
+
+    //Implementation of Data layer 
     public class TabletDataFromJsonFile : ITabletsData
     {
         readonly List<TabletDetails> tabletDetails;
         readonly string filePath;
+        //Constructor
         public TabletDataFromJsonFile()
         {
             this.filePath = "C:\\Users\\harsh\\Desktop\\BridgeInternational\\TabletBatteryUsage.API\\TabletBatteryUsage.Data\\Resources\\battery.json";
             this.tabletDetails = ParseJsonDataForTabletsBatteryDetails(filePath);
         }
 
+
+        //Method to parse json file from resources folder takes filePath as input in string format
+        //Returns list of Tablet details.
         public List<TabletDetails> ParseJsonDataForTabletsBatteryDetails(string filePath)
         {
             List<TabletDetails> data = new List<TabletDetails>();
@@ -49,29 +55,39 @@ namespace TabletBatteryUsage.Data
             return data;
         }
 
+        //Get all devices battery usage percentage method.
+        //Returns list of battery usage data for each device.
         public IEnumerable<TabletBatteryData> GetAllTabletsDetails()
         {
             return CalculateTabletBatteryUsage(tabletDetails);
         }
 
+        //Get all devices battery usage percentage after applying academy filter takes academyId as input parameter in int format.
+        //Returns list of battery usage data for each device.
         public IEnumerable<TabletBatteryData> GetTabletDetailsByAcademyId(int academyId)
         {
             List<TabletDetails> tabDetails = tabletDetails.Where(detail => detail.AcadamyId == academyId).ToList();
             return CalculateTabletBatteryUsage(tabDetails);
         }
 
+        //Get all devices battery usage percentage after applying serialnumber filter takes serialnumber as input parameter in string format
+        //Returns list of battery usage data for each device.
         public IEnumerable<TabletBatteryData> GetTabletDetailsByDeviceId(string serialNumber)
         {
             List<TabletDetails> tabDetails = tabletDetails.Where(detail => detail.SerialNumber == serialNumber).ToList();
             return CalculateTabletBatteryUsage(tabDetails);
         }
 
+        //Get all devices battery usage percentage after applying employee filter takes employeeId as input parameter in string format
+        //Returns list of battery usage data for each device.
         public IEnumerable<TabletBatteryData> GetTabletDetailsByEmployeeId(string employeeId)
         {
             List<TabletDetails> tabDetails = tabletDetails.Where(detail => detail.EmployeeId == employeeId).ToList();
             return CalculateTabletBatteryUsage(tabDetails);
         }
 
+        //Method to calculate battery usage percentage takes list of TabletDetails as input parameter.
+        //Returns list of battery usage data for each device.
         public IEnumerable<TabletBatteryData> CalculateTabletBatteryUsage(List<TabletDetails> devicesList)
         {
             var devicesGroupedBySerialNumber = devicesList.GroupBy(t => t.SerialNumber)

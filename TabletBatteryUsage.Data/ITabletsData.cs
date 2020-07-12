@@ -5,6 +5,7 @@ using TabletBatteryUsage.Core;
 
 namespace TabletBatteryUsage.Data
 {
+    //Interface for loose coupling, easier maintainability 
     public interface ITabletsData
     {
         IEnumerable<TabletBatteryData> GetAllTabletsDetails();

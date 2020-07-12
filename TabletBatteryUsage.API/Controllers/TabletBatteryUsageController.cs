@@ -17,13 +17,14 @@ namespace TabletBatteryUsage.API.Controllers
         private readonly ILogger<TabletBatteryUsageController> logger;
         private readonly ITabletsData tabletsData;
 
-
+        //Constructor with dependancy injection. 
         public TabletBatteryUsageController(ILogger<TabletBatteryUsageController> logger, ITabletsData tabletsData)
         {
             this.logger = logger;
             this.tabletsData = tabletsData;
         }
 
+        //Get all devices battery usage details 
         [HttpGet]
         [Route("api/TabletBatteryUsage")]
         public IActionResult GetAllTabletsData()
@@ -48,6 +49,7 @@ namespace TabletBatteryUsage.API.Controllers
             return Ok(response);
         }
 
+        //Get all devices battery usage details for given serialnumber
         [HttpGet]
         [Route("api/[controller]/tablets/{serialnumber}")]
         public IActionResult GetAllTabletsDataByDevice(string serialnumber)
@@ -72,12 +74,14 @@ namespace TabletBatteryUsage.API.Controllers
             return Ok(response);
         }
 
+        //Get all devices battery usage details for given EmployeeId
         [HttpGet]
         [Route("api/[controller]/employee/{employeeid}")]
         public IActionResult GetAllTabletsDataByEmployee(string employeeid)
         {
             logger?.LogDebug("'{0}' has been invoked", nameof(GetAllTabletsData));
             IEnumerable<TabletBatteryData> response = new List<TabletBatteryData>();
+
             try
             {
                 response = tabletsData.GetTabletDetailsByEmployeeId(employeeid);
@@ -95,6 +99,7 @@ namespace TabletBatteryUsage.API.Controllers
             return Ok(response);
         }
 
+        //Get all devices battery usage details for given academyId
         [HttpGet]
         [Route("api/[controller]/academy/{academyid}")]
         public IActionResult GetAllTabletsDataByAcademy(int academyid)

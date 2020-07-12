@@ -7,6 +7,8 @@ using Newtonsoft.Json.Converters;
 
 namespace TabletBatteryUsage.Core
 {
+
+    //Class for return object
     public class TabletBatteryData
     {
         public string SerialNumber { get; set; }

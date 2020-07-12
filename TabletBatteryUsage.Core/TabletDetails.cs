@@ -4,6 +4,8 @@ using System.Text;
 
 namespace TabletBatteryUsage.Core
 {
+
+    //Class to parse Json file
     public class TabletDetails
     {
         public int AcadamyId { get; set; }
