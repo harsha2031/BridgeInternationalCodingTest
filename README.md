@@ -98,3 +98,5 @@ calculated battery usage percentage for each device after filtering by academyid
     }
 ]
 ```
+### Please go to following link for Swagger API documentation. http://localhost:49731/swagger/index.html 
+![Screenshot](Swagger.PNG)
