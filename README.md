@@ -100,3 +100,6 @@ calculated battery usage percentage for each device after filtering by academyid
 ```
 ### Please go to following link for Swagger API documentation. http://localhost:49731/swagger/index.html 
 ![Screenshot](Swagger.PNG)
+### Thought process while developing API.
+Created different projects for each module of the API for easy maintainability. Models are in TabletBatteryUsage.Core project, models are used for serailizing and deserializing json data.Implemented TabletBatteryUsage.Data project for Data layer of application. Where I have created interface file which can be used for multiple data sources and which is very useful while scalling the API. As this API uses json file as datasource, created implementation file for same interface file. Created TabletBatteryUsage.API which as end point for GetBatteryData, where I have used dependancy injection to reduce tight coupling. Crated TabletBatteryUsage.Tests for unit testing Web API, where I have implemented two test classes which give maximum code coverage of given application. 
+ 
